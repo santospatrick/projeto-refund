@@ -43,7 +43,19 @@ function addExpense(newExpense) {
         expenseIcon.setAttribute('src', `img/${newExpense.category_id}.svg`)
         expenseIcon.setAttribute('alt', newExpense.category_name)
 
-        expenseItem.appendChild(expenseIcon)
+        // Cria o conteúdo da despesa
+        const expenseInfo = document.createElement('div')
+        expenseInfo.classList.add('expense-info')
+
+        const expenseName = document.createElement('strong')
+        expenseName.textContent = newExpense.expense
+
+        const expenseCategory = document.createElement('span')
+        expenseCategory.textContent = newExpense.category_name
+
+        expenseInfo.append(expenseName, expenseCategory)
+
+        expenseItem.append(expenseIcon, expenseInfo)
         expensesList.appendChild(expenseItem)
     } catch (error) {
         alert('Erro ao adicionar despesa!')
