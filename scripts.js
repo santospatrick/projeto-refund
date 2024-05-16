@@ -129,3 +129,13 @@ function updateTotals() {
         console.log("🚀 ~ updateTotals ~ error:", error)
     }
 }
+
+expensesList.addEventListener('click', function(event) {
+    const target = event.target
+
+    if (target.classList.contains('remove-icon')) {
+        target.closest('.expense').remove()
+    }
+
+    updateTotals()
+})
