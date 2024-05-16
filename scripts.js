@@ -2,6 +2,7 @@ const form = document.querySelector('form')
 const expense = document.getElementById('expense')
 const category = document.getElementById('category')
 const amount = document.getElementById('amount');
+const expensesQuantity = document.querySelector('aside header p span')
 
 // Seleciona os elementos da lista
 const expensesList = document.querySelector('.expenses-list')
@@ -87,8 +88,20 @@ function addExpense(newExpense) {
 
         expenseItem.append(expenseIcon, expenseInfo, expenseAmount, removeIcon)
         expensesList.appendChild(expenseItem)
+
+        updateTotals()
     } catch (error) {
         alert('Erro ao adicionar despesa!')
         console.log(error)
+    }
+}
+
+function updateTotals() {
+    try {
+        const items = expensesList.children.length
+        expensesQuantity.textContent = `${items} ${items > 1 ? 'despesas' : 'despesa'}`
+    } catch (error) {
+        alert('Não foi possível atualizar os totais.')
+        console.log("🚀 ~ updateTotals ~ error:", error)
     }
 }
