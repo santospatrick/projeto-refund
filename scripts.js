@@ -76,7 +76,16 @@ function addExpense(newExpense) {
 
         expenseAmount.append(small, newExpense.amount.replace('R$', '').trim())
 
-        expenseItem.append(expenseIcon, expenseInfo, expenseAmount)
+        /**
+         * Criando ação de remover
+         * <img src="./img/remove.svg" alt="remover" class="remove-icon" />
+         */
+        const removeIcon = document.createElement('img')
+        removeIcon.setAttribute('src', 'img/remove.svg')
+        removeIcon.setAttribute('alt', 'Remover')
+        removeIcon.classList.add('remove-icon')
+
+        expenseItem.append(expenseIcon, expenseInfo, expenseAmount, removeIcon)
         expensesList.appendChild(expenseItem)
     } catch (error) {
         alert('Erro ao adicionar despesa!')
