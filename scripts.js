@@ -38,12 +38,21 @@ function addExpense(newExpense) {
         const expenseItem = document.createElement('li')
         expenseItem.classList.add('expense')
 
-        // Criar o ícone
+        /**
+         * Ícone da despesa
+         * <img src="./img/food.svg" alt="Ícone de tipo da despesa" />
+         */
         const expenseIcon = document.createElement('img')
         expenseIcon.setAttribute('src', `img/${newExpense.category_id}.svg`)
         expenseIcon.setAttribute('alt', newExpense.category_name)
 
-        // Cria o conteúdo da despesa
+        /**
+         * Conteúdo da despesa
+         * <div class="expense-info">
+         *   <strong>Almoço</strong>
+         *   <span>Alimentação</span>
+         * </div>
+         */
         const expenseInfo = document.createElement('div')
         expenseInfo.classList.add('expense-info')
 
@@ -55,7 +64,19 @@ function addExpense(newExpense) {
 
         expenseInfo.append(expenseName, expenseCategory)
 
-        expenseItem.append(expenseIcon, expenseInfo)
+        /**
+         * Conteúdo do valor
+         * <span class="expense-amount"><small>R$</small>1.420,57</span>
+         */
+        const expenseAmount = document.createElement('span')
+        expenseAmount.classList.add('expense-amount')
+
+        const small = document.createElement('small')
+        small.textContent = 'R$'
+
+        expenseAmount.append(small, newExpense.amount.replace('R$', '').trim())
+
+        expenseItem.append(expenseIcon, expenseInfo, expenseAmount)
         expensesList.appendChild(expenseItem)
     } catch (error) {
         alert('Erro ao adicionar despesa!')
